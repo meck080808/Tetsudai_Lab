@@ -5,6 +5,7 @@ import 'firebase/storage'
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
+    // TODO: insert configuration
     apiKey: "AIzaSyCjCc9QNJM8LyjwHJk_utfNF3vzVrx2Iu0",
     authDomain: "tetsudai-lab.firebaseapp.com",
     projectId: "tetsudai-lab",
