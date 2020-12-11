@@ -1,67 +1,81 @@
 <template>
-  <div class="profile-table p-4 bg-gray-100">
-    <div class="shadow-md rounded overflow-y-auto">
+  <div class="profile-table p-4">
       <table class="w-full text-md bg-white">
         <tbody>
-          <tr class="border-b bg-gray-100">
+          <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              所属・部署
+              タイトル
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.belongs" class="border w-full px-1" />
+            <td class="p-10 w-full">
+              <input v-model="profile.title" class="border w-full px-1" placeholder="タイトルを入力" />
             </td>
           </tr>
-          <tr class="border-b bg-gray-100">
+          <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              ニックネーム
+              ジャンル
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.nickname" class="border w-full px-1" />
+            <td class="p-10 w-full">
+              <select v-model="selected" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
+                <option disabled value="">ジャンルを選択</option>
+                <option>実験系</option>
+                <option>分析系</option>
+              </select>
             </td>
           </tr>
-          <tr class="border-b bg-gray-100">
+          <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              出身地
+              特徴(Tag)
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.birthplace" class="border w-full px-1" />
+                <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                <label for="jack">
+                    初心者OK
+                </label>
+                <input type="checkbox" id="john" value="John" v-model="checkedNames">
+                <label for="john">
+                    経験者優遇
+                </label>
+                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                <label for="mike">
+                    カンタン
+                </label>
+                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                <label for="mike">
+                    長期
+                </label>
+                                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                <label for="mike">
+                    高単価
+                </label>
+                                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                <label for="mike">
+                    スピード重視
+                </label>
             </td>
           </tr>
-          <tr class="border-b bg-gray-100">
+          <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              生年月日
+              依頼内容
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.birthday" class="border w-full px-1" />
+            <td class="p-10 w-full">
+              <textarea v-model="message" placeholder="依頼内容を入力" class="border w-full px-1 text-top"></textarea>
             </td>
           </tr>
-          <tr class="border-b bg-gray-100">
+          <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              血液型
+              アルバイト期間
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.bloodType" class="border w-full px-1" />
-            </td>
-          </tr>
-          <tr class="border-b bg-gray-100">
-            <th class="p-4 whitespace-no-wrap text-left">
-              星座
-            </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.sign" class="border w-full px-1" />
-            </td>
-          </tr>
-          <tr class="border-b bg-gray-100">
-            <th class="p-4 whitespace-no-wrap text-left">
-              趣味
-            </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.hobby" class="border w-full px-1" />
+            <td class="p-10 w-full">
+              <select v-model="selected" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
+                <option disabled value="">期間を選択</option>
+                <option>超短期</option>
+                <option>短期</option>
+                <option>長期</option>
+              </select>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
   </div>
 </template>
 <script lang="ts">
