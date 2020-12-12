@@ -1,5 +1,47 @@
 <template>
-  <div class="list-table shadow-md sm:rounded overflow-y-auto">
+  <div>
+    <div class="w-full mb-2">
+      <input
+        :value="search"
+        @input="handleSearch"
+        type="search"
+        class="h-12 p-4 mb-1 w-full bg-white border-2 border-gray-300 rounded-full"
+        placeholder="Search company name or job title"
+        aria-label="Search by company name or job title"
+      >
+    </div>
+    <div class="mb-4 w-full">
+      <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
+        <button
+          :class="{ 'bg-indigo-700 text-white hover:bg-indigo-800' : status === 'all' }"
+          @click="handleStatusFilter('all')"
+          class="bg-gray-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-gray-500"
+        >
+          深夜
+        </button>
+      </div>
+    </div>
+    <div class="mb-4 w-full">
+      <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
+        <button
+          :class="{ 'bg-indigo-700 text-white hover:bg-indigo-800' : status === 'all' }"
+          @click="handleStatusFilter('all')"
+          class="bg-gray-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-gray-500"
+        >
+          全部見せる
+        </button>
+        <button
+          :class="{ 'bg-red-500 text-white hover:bg-red-600' : status === 'rejected' }"
+          @click="handleStatusFilter('rejected')"
+          class="bg-gray-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-gray-500"
+        >
+          絞り込み
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+<!--  <div class="list-table shadow-md sm:rounded overflow-y-auto">
     <table class="w-full text-md bg-white">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
@@ -41,12 +83,13 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</template>
+  </div> -->
+
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
 import ProfileTable from '@/components/profile-table.vue'
+// import Filter from '@/components/filter/filter.vue'
 import firebase from '@/plugins/firebase.ts'
 import { variants } from '~/tailwind.config'
 
@@ -60,6 +103,10 @@ type Job = {
 const db = firebase.firestore()
 
 export default defineComponent({
+  components: {
+    PageHeading,
+    ProfileTable,
+  },
   name: 'search',
   setup(_) {
     const jobsList = reactive<Job[]>([])

@@ -47,6 +47,7 @@
 import { defineComponent, reactive, SetupContext } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
 import ProfileTable from '@/components/profile-table.vue'
+import Filter from '@/components/filter/filter.vue'
 import firebase from '@/plugins/firebase.ts'
 import { variants } from '~/tailwind.config'
 
@@ -65,13 +66,18 @@ var conditions = [
 ]
 
 export default defineComponent({
+  components: {
+    PageHeading,
+    ProfileTable,
+    Filter
+  },
   name: 'search',
   setup(_) {
     const jobsList = reactive<Job[]>([])
     firebase
       .firestore()
       .collection('temp')
-      .where(...conditions)
+      .where('genre', '==', 'Science')
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
