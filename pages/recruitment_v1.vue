@@ -28,7 +28,18 @@ import firebase from '@/plugins/firebase.ts'
 type Jobs = {
 //   id: string
   recruitment: {
-    title: string
+        title: string
+        genre: string
+        tags: {
+            beginner: boolean
+            experienced: boolean
+            easy: boolean
+            longterm: boolean
+            highPrice: boolean
+            speedPriority: boolean
+        }
+        contents: string
+        term: string
   }
 }
 
@@ -43,13 +54,28 @@ export default defineComponent({
     const RecruitmentData = reactive<Jobs>({
     //   id: 'meck080808',
       recruitment: {
-        title: ''
+        title: '',
+        genre: '',
+        tags: {
+            beginner: false,
+            experienced: false,
+            easy: false,
+            longterm: false,
+            highPrice: false,
+            speedPriority: false
+        },
+        contents: '',
+        term: ''
       }
     })
 
     const setprofile = (): void => {
       const data = {
-        タイトル: RecruitmentData.recruitment.title,
+        title: RecruitmentData.recruitment.title,
+        genre: RecruitmentData.recruitment.genre,
+        tags: RecruitmentData.recruitment.tags,
+        contents: RecruitmentData.recruitment.contents,
+        term: RecruitmentData.recruitment.term
       }
       firebase
         .firestore()
@@ -57,7 +83,7 @@ export default defineComponent({
         .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
-          window.location.href = '/recruitment' // 完了後、プロフィール画面へ遷移
+          window.location.href = '/' // 完了後、プロフィール画面へ遷移
         })
     }
     return {

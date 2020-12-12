@@ -2,16 +2,17 @@
   <div class="bg-white flex flex-col font-sans">
     <div class="container mx-auto">
       <header
-        class="flex items-center justify-between relative pl-4 sm:pl-0 py-2"
+        class="items-center"
       >
-        <p class="leading-none">
-          <a
-            href="/"
-            class="text-xl sm:text-2xl font-bold uppercase text-blue-900 hover:text-blue-800"
-          >
-            <img src="@/assets/img/logo.png" alt="画像が見つかりません" style="width: 250px;">
-          </a>
-        </p>
+          <div class="text-right mt-5">
+        <a href="recruitment_v1">
+        <button
+            class="w-100 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-5 rounded focus:outline-none focus:shadow-outline"
+        >
+            アルバイト募集を作成する（無料）
+        </button>
+        </a>
+    </div>
       </header>
       <main>
         <nuxt />
