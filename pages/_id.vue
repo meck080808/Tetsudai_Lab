@@ -2,8 +2,8 @@
   <div>
     <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-4 md:mb-8 border-b">{{ job.lab }}</h1>
 
-    <div class="mx-auto flex flex-wrap" m-0>
-      <body>
+    <div class="mx-auto" m-0>
+      <div class="flex flex-wrap w-5/12">
         <div>
           土木・建築を専門としている研究室です。現在は教授２名（准教授1名、助教授1名）及び学生10名(博士1名、修士3名、学士6名)が所属しています。
           土木・建築関係の会社との共同研究も多く、特に建築関係の業務のIT化の依頼は非常に多いです。
@@ -12,9 +12,9 @@
         <div>
           <img src="@/assets/image/muromachi.jpeg">
         </div>
-      </body>
+      </div>
 
-        <table class="w-full text-md bg-white">
+        <table class="w-full text-md bg-white my-6">
           <thead>
             <tr class="border-b bg-blue-900 text-white">
               <th class="text-left p-3 px-5">タイトル</th>
@@ -53,12 +53,17 @@
           </tbody>
         </table>
     </div>
+
+    <p>Mail address</p>
+    <input v-model="message" placeholder="edit me">
   </div>
+
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'nuxt-composition-api'
 import detaillistJson from '@/pages/detaillist.json'
 import firebase from '@/plugins/firebase.ts'
+import { useRoute } from 'vue-router'
 type Job = {
   lab: string
   title: string
@@ -68,7 +73,7 @@ type Job = {
   time:string
 }
 export default defineComponent({
-  setup(){
+  setup(_, { root }: SetupContext){
     const job = reactive<Job>({
       lab: '',
       title: '', 
@@ -80,7 +85,7 @@ export default defineComponent({
     firebase
     .firestore()
     .collection('temp2')
-    .doc('IRlLYlFkg6MBmHY6HYe7')
+    .doc(root.$route.params.id)
     .get()
     .then((doc) => {
       if(doc.exists) {
