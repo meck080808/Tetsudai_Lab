@@ -19,43 +19,55 @@
       </button>
     </div>
     <div id="checks" class="mb-4 w-full">
-      <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
+      <div class="flex flex-wrap items-center space-x-8 justify-center w-full text-gray-800">
         <label for="checkbox1">
           <input type=checkbox id="checkbox1" v-model="tag1"/>
-          深夜 {{tag1}}
+          深夜
         </label>
-      </div>
-      <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
         <label for="checkbox2">
           <input type=checkbox id="checkbox2" v-model="tag2"/>
-          スピード重視 {{tag2}}
+          スピード重視
+        </label>
+        <label for="checkbox3">
+          <input type=checkbox id="checkbox3" v-model="tag3"/>
+          スピード重視
+        </label>
+        <label for="checkbox4">
+          <input type=checkbox id="checkbox4" v-model="tag4"/>
+          スピード重視
+        </label>
+        <label for="checkbox5">
+          <input type=checkbox id="checkbox5" v-model="tag5"/>
+          スピード重視
+        </label>
+        <label for="checkbox6">
+          <input type=checkbox id="checkbox6" v-model="tag6"/>
+          スピード重視
         </label>
       </div>
     </div>
-    <div class="w-full overflow-y-auto">
+    <div class="w-full shadow-lg border-4 divide-y-4 divide-gray-300">
       <div
         v-for="job in jobsList"
         :key="job.id"
         class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
         @click="detailLink(job.id)"
       >
-        <h1 class="py-3 px-5 font-size-large whitespace-no-wrap sm:whitespace-normal">
+        <p class="pt-5 px-8 text-3xl whitespace-no-wrap sm:whitespace-normal">
           {{ job.title }}
-        </h1>
-        <p class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-          <template v-if="job.speedPriority === true">              
-            <a
-              :href="'/search/' + '/speedPriority/'"
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
-            >
-              スピード重視
-            </a>
-          </template>
-          <template v-else>メンバー</template>
         </p>
-        <p class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-          {{ job.dateStart.toDate() }}
-        </p>  
+        <p class="pb-1 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
+          雇用機構・研究室：{{ job.lab }}
+        </p>
+        <p class="pb-1 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
+          ジャンル：{{ job.genre }}
+        </p>
+        <p class="pb-10 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
+          締め切り：{{ job.dateEnd.toDate() }}
+        </p>
+        <p>
+          {{ job.tags.night }}
+        </p>
       </div>
     </div>
   </div>
@@ -73,8 +85,13 @@ type Job = {
   id: string
   title: string
   genre: string
-  speedPriority: boolean
-  dateStart: string
+  lab: string
+  dateEnd: string
+  tags: {
+    night: boolean
+    speed: boolean
+  }
+//  dateStart: string
 }
 
 export default defineComponent({
@@ -86,15 +103,18 @@ export default defineComponent({
     return {
       tag1: false,
       tag2: false,
-      tag3: false
+      tag3: false,
+      tag4: false,
+      tag5: false,
+      tag6: false
     };
   },
-  name: 'search',
   setup(_) {
     const jobsList = reactive<Job[]>([])
     firebase
       .firestore()
-      .collection('temp')
+      .collection('jobs')
+      .orderBy("dateEnd")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -102,8 +122,12 @@ export default defineComponent({
             id: doc.id,
             title: doc.data().title,
             genre: doc.data().genre,
-            speedPriority: doc.data().speedPriority,
-            dateStart: doc.data().dateStart,
+            lab: doc.data().lab,
+            dateEnd: doc.data().dateEnd,
+            tags: {
+              night: doc.data().night,
+              speed: doc.data().speed,
+            }
           })
         })
       })    
