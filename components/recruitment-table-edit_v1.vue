@@ -2,6 +2,14 @@
   <div class="profile-table p-4">
       <table class="w-full text-md bg-white">
         <tbody>
+            <tr class="border-b">
+            <th class="p-4 whitespace-no-wrap text-left">
+              研究室名
+            </th>
+            <td class="p-10 w-full">
+              <input v-model="recruitment.lab" class="border w-full px-1" placeholder="研究室名を入力" />
+            </td>
+          </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
               タイトル
@@ -63,15 +71,10 @@
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              アルバイト期間
+              募集締め切り日
             </th>
             <td class="p-10 w-full">
-              <select v-model="recruitment.term" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
-                <option disabled value="">--期間を選択--</option>
-                <option value="very short">超短期</option>
-                <option value="short">短期</option>
-                <option value="long">長期</option>
-              </select>
+                <input type="date" v-model="recruitment.endDate" class="border w-full px-1">
             </td>
           </tr>
         </tbody>

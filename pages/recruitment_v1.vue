@@ -28,6 +28,7 @@ import firebase from '@/plugins/firebase.ts'
 type Jobs = {
 //   id: string
   recruitment: {
+        lab: string
         title: string
         genre: string
         tags: {
@@ -54,6 +55,7 @@ export default defineComponent({
     const RecruitmentData = reactive<Jobs>({
     //   id: 'meck080808',
       recruitment: {
+        lab: '',
         title: '',
         genre: '',
         tags: {
@@ -71,6 +73,7 @@ export default defineComponent({
 
     const setprofile = (): void => {
       const data = {
+        lab: RecruitmentData.recruitment.lab,
         title: RecruitmentData.recruitment.title,
         genre: RecruitmentData.recruitment.genre,
         tags: RecruitmentData.recruitment.tags,
@@ -80,10 +83,10 @@ export default defineComponent({
       firebase
         .firestore()
         .collection('jobs') // usersコレクションの、
-        .doc() // <ユーザーID>というドキュメントに、
-        .set(data) // dataをセットする
-        .then(() => {
-          window.location.href = '/' // 完了後、プロフィール画面へ遷移
+        .add(data) // dataをセットする
+        .then((response) => {
+          console.log(response.id)
+          window.location.href = '/'+ response.id // 完了後、プロフィール画面へ遷移
         })
     }
     return {
