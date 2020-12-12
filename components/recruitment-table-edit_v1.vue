@@ -15,10 +15,10 @@
               ジャンル
             </th>
             <td class="p-10 w-full">
-              <select v-model="selected" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
-                <option disabled value="">ジャンルを選択</option>
-                <option>実験系</option>
-                <option>分析系</option>
+              <select v-model="recruitment.genre" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
+                <option disabled value="">--ジャンルを選択--</option>
+                <option value="science">理学系</option>
+                <option value="engineering">工学系</option>
               </select>
             </td>
           </tr>
@@ -27,38 +27,38 @@
               特徴(Tag)
             </th>
             <td class="p-4 w-full">
-                <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-                <label for="jack">
+                <input type="checkbox" id="begginer" value=true v-model="recruitment.tags.beginner">
+                <label for="begginer">
                     初心者OK
                 </label>
-                <input type="checkbox" id="john" value="John" v-model="checkedNames">
-                <label for="john">
+                <input type="checkbox" id="experienced" value=true v-model="recruitment.tags.experienced">
+                <label for="experienced">
                     経験者優遇
                 </label>
-                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-                <label for="mike">
+                <input type="checkbox" id="easy" value=true v-model="recruitment.tags.easy">
+                <label for="easy">
                     カンタン
                 </label>
-                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-                <label for="mike">
+                <input type="checkbox" id="longterm" value=true v-model="recruitment.tags.longterm">
+                <label for="longterm">
                     長期
                 </label>
-                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-                <label for="mike">
+                <input type="checkbox" id="highPrice" value=true v-model="recruitment.tags.highPrice">
+                <label for="highPrice">
                     高単価
                 </label>
-                                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-                <label for="mike">
+                <input type="checkbox" id="speedPriority" value=true v-model="recruitment.tags.speedPriority">
+                <label for="speedPriority">
                     スピード重視
                 </label>
             </td>
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              依頼内容
+              募集内容
             </th>
             <td class="p-10 w-full">
-              <textarea v-model="message" placeholder="依頼内容を入力" class="border w-full px-1 text-top"></textarea>
+              <textarea v-model="recruitment.contents" placeholder="募集内容を入力" class="border w-full px-1 text-top"></textarea>
             </td>
           </tr>
           <tr class="border-b">
@@ -66,11 +66,11 @@
               アルバイト期間
             </th>
             <td class="p-10 w-full">
-              <select v-model="selected" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
-                <option disabled value="">期間を選択</option>
-                <option>超短期</option>
-                <option>短期</option>
-                <option>長期</option>
+              <select v-model="recruitment.term" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
+                <option disabled value="">--期間を選択--</option>
+                <option value="very short">超短期</option>
+                <option value="short">短期</option>
+                <option value="long">長期</option>
               </select>
             </td>
           </tr>
