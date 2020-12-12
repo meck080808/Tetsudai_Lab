@@ -39,9 +39,9 @@
         class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
         @click="detailLink(job.id)"
       >
-        <p class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
+        <h1 class="py-3 px-5 font-size-large whitespace-no-wrap sm:whitespace-normal">
           {{ job.title }}
-        </p>
+        </h1>
         <p class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
           <template v-if="job.speedPriority === true">              
             <a
@@ -108,7 +108,7 @@ export default defineComponent({
         })
       })    
     const detailLink = (jobId: string): void => {
-      window.location.href = '/detail/' + jobId
+      window.location.href = '/' + jobId
     }
     return {
       jobsList,
