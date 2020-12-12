@@ -83,7 +83,7 @@ export default defineComponent({
         .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
-          window.location.href = '/recruitment' // 完了後、プロフィール画面へ遷移
+          window.location.href = '/' // 完了後、プロフィール画面へ遷移
         })
     }
     return {

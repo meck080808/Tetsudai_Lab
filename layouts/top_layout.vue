@@ -2,14 +2,14 @@
   <div class="bg-white flex flex-col font-sans">
     <div class="container mx-auto">
       <header
-        class="flex items-center justify-between relative pl-4 sm:pl-0 py-2"
+        class="items-center py-10"
       >
         <p class="leading-none">
           <a
             href="/"
             class="text-xl sm:text-2xl font-bold uppercase text-blue-900 hover:text-blue-800"
           >
-            <img src="@/assets/img/logo.png" alt="画像が見つかりません" style="width: 250px;">
+            <img src="@/assets/img/logo.png" alt="画像が見つかりません" style="width: 1000px;">
           </a>
         </p>
       </header>
