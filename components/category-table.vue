@@ -1,33 +1,23 @@
 <template>
-  <div class="profile-table p-4">
-      <table class="w-full text-md bg-white">
-        <tbody  class="border-b">
-        <tr><th class="p-5">
-                理学
-        </th></tr>
-          <tr><td class="p-5">
-              数学
-          </td></tr>
-          <tr><td class="p-5">
-              物理
-          </td></tr>
-            <th class="p-5">
-              工学
-            </th>
-        </tbody>
-        <tbody>
-          <tr class="border-b">
-            <th class="p-5">
-              生命
-            </th>
-            <th class="p-5">
-              情報
-            </th>
-          </tr>
-        </tbody>
-      </table>
-  </div>
+<div>
+    <div class="inline-block">　
+        <ul>　　
+            <li class="text-left"><a href="">理学系</a></li>　　
+            <li class="text-left"><a href="">工学系</a></li>　　
+            <li class="text-left"><a href="">物質系</a></li>　
+            <li class="text-left"><a href="">情報系</a></li>　
+        </ul>　
+   </div>
+    <div class="inline-block">　　
+        <ul>　
+            <li class="text-left"><a href="">生命系</a></li>　　
+            <li class="text-left"><a href="">環境系</a></li>
+            <li class="text-left"><a href="">社会・人文科学系</a></li>　
+        </ul>　
+    </div>
+</div>
 </template>
+
 <script lang="ts">
 import { defineComponent, SetupContext } from 'nuxt-composition-api'
 export default defineComponent({
