@@ -6,7 +6,7 @@
     <div class="lg:w-11/12 mx-auto flex flex-wraps">
       <profileTableEdit
         class=" w-full text-center"
-        :profile="userData.profile"
+        :recruitment="RecruitmentData.recruitment"
       />
     </div>
       <div class="text-center">
@@ -22,13 +22,16 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onBeforeMount } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
-import profileTableEdit from '@/components/profile-table-edit.vue'
+import profileTableEdit from '@/components/recruitment-table-edit_v1.vue'
 import firebase from '@/plugins/firebase.ts'
 
 type Jobs = {
-  title: string
+//   id: string
+  recruitment: {
+    title: string
   }
 }
+
 
 export default defineComponent({
   components: {
@@ -37,42 +40,28 @@ export default defineComponent({
     // profileNameIconEdit,
   },
   setup(_, { root }: SetupContext) {
-    const RecuitmentData = reactive<Jobs>({
-      title: '',
-      },
+    const RecruitmentData = reactive<Jobs>({
+    //   id: 'meck080808',
+      recruitment: {
+        title: ''
+      }
     })
-
-    const getUserData = (user) => {
-      firebase
-        .firestore()
-        .collection('users') // usersコレクションから、
-        .doc(user.uid) // 指定したuidのドキュメントを
-        .get() // 取得する
-        .then((doc) => {
-          if (doc.exists) {
-            RecruitmentData.title = doc.data().title
-          }
-        })
-        .catch((err) => {
-          console.log('Error getting user document', err);
-        })
-    }
 
     const setprofile = (): void => {
       const data = {
-        タイトル: RecuitmentData.title,
+        タイトル: RecruitmentData.recruitment.title,
       }
       firebase
         .firestore()
         .collection('jobs') // usersコレクションの、
-        .doc(RecuitmentData.title) // <ユーザーID>というドキュメントに、
+        .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
-          window.location.href = '/profile' // 完了後、プロフィール画面へ遷移
+          window.location.href = '/recruitment' // 完了後、プロフィール画面へ遷移
         })
     }
     return {
-      RecuitmentData,
+      RecruitmentData,
       setprofile,
     }
   },
