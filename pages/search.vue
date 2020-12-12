@@ -22,23 +22,23 @@
       <div class="flex flex-wrap items-center space-x-8 justify-center w-full text-gray-800">
         <label for="checkbox1">
           <input type=checkbox id="checkbox1" v-model="tag1"/>
-          深夜
+          初心者OK
         </label>
         <label for="checkbox2">
           <input type=checkbox id="checkbox2" v-model="tag2"/>
-          スピード重視
+          カンタン
         </label>
         <label for="checkbox3">
           <input type=checkbox id="checkbox3" v-model="tag3"/>
-          スピード重視
+          経験者優遇
         </label>
         <label for="checkbox4">
           <input type=checkbox id="checkbox4" v-model="tag4"/>
-          スピード重視
+          高報酬
         </label>
         <label for="checkbox5">
           <input type=checkbox id="checkbox5" v-model="tag5"/>
-          スピード重視
+          長期
         </label>
         <label for="checkbox6">
           <input type=checkbox id="checkbox6" v-model="tag6"/>
@@ -46,11 +46,11 @@
         </label>
       </div>
     </div>
-    <div class="w-full shadow-lg border-4 divide-y-4 divide-gray-300">
+    <div class="w-full shadow-lg border-4 divide-y-4 divide-gray-300" >
       <div
         v-for="job in jobsList"
         :key="job.id"
-        class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
+        class="border-b bg-gray-100 hover:bg-orange-150 cursor-pointer"
         @click="detailLink(job.id)"
       >
         <p class="pt-5 px-8 text-3xl whitespace-no-wrap sm:whitespace-normal">
