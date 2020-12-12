@@ -100,47 +100,43 @@
 export default {
   data () {
     return {
-      orderOpen: false,
-      orderChanged: false
+      //orderOpen: false,
+      //orderChanged: false
     }
   },
   computed: {
     search () {
-      return this.$store.state.leads.filter.search
+      //return this.$store.state.leads.filter.search
     },
     status () {
-      return this.$store.state.leads.filter.status
+      //return this.$store.state.leads.filter.status
     },
     order () {
-      return this.$store.state.leads.filter.order
+      //return this.$store.state.leads.filter.order
     },
     orderText () {
-      switch (this.order) {
-        case 'companyName':
-          return 'Company Name'
-        case 'jobTitle':
-          return 'Job Title'
-        case 'status':
-          return 'Status'
-        default:
-          return 'Created Date'
+      //switch (this.order) {
+      //  case 'companyName':
+      //    return 'Company Name'
+      //  case 'jobTitle':
+      //    return 'Job Title'
+      //  case 'status':
+      //    return 'Status'
+      //  default:
+      //    return 'Created Date'
       }
-    }
-  },
+    },
   methods: {
     handleStatusFilter (status) {
-      this.$store.dispatch('leads/filterStatus', status)
+      //this.$store.dispatch('leads/filterStatus', status)
     },
-    handleSearch: debounce(function (e) {
-      this.$store.dispatch('leads/filterSearch', e.target.value)
-    }, 500),
     handleFilterOrder (orderBy) {
-      this.orderOpen = false
-      this.orderChanged = true
-      this.$store.dispatch('leads/filterOrder', orderBy)
+      //this.orderOpen = false
+      //this.orderChanged = true
+      //this.$store.dispatch('leads/filterOrder', orderBy)
     },
     closeOrderDropDown (e) {
-      this.orderOpen = false
+      //this.orderOpen = false
     }
   }
 }
