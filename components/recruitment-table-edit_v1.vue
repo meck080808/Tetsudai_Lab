@@ -2,17 +2,9 @@
   <div class="profile-table p-4">
       <table class="w-full text-md bg-white">
         <tbody>
-            <tr class="border-b">
-            <th class="p-4 whitespace-no-wrap text-left">
-              研究室名
-            </th>
-            <td class="p-10 w-full">
-              <input v-model="recruitment.lab" class="border w-full px-1" placeholder="研究室名を入力" />
-            </td>
-          </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              タイトル
+              募集のタイトル
             </th>
             <td class="p-10 w-full">
               <input v-model="recruitment.title" class="border w-full px-1" placeholder="タイトルを入力" />
@@ -20,19 +12,24 @@
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              ジャンル
+              研究分野
             </th>
             <td class="p-10 w-full">
               <select v-model="recruitment.genre" class="border-2 border-gray-400 w-full px-1 bg-gray-100" >
-                <option disabled value="">--ジャンルを選択--</option>
-                <option value="science">理学系</option>
-                <option value="engineering">工学系</option>
+                <option disabled value="">--研究分野を選択--</option>
+                <option value="理学系">理学系</option>
+                <option value="工学系">工学系</option>
+                <option value="物質系">物質系</option>
+                <option value="情報系">情報系</option>
+                <option value="生命系">生命系</option>
+                <option value="環境系">環境系</option>
+                <option value="社会系">社会系</option>
               </select>
             </td>
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              特徴(Tag)
+              アルバイトの特徴
             </th>
             <td class="p-4 w-full">
                 <input type="checkbox" id="begginer" value=true v-model="recruitment.tags.beginner">
@@ -63,6 +60,14 @@
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
+              必要なスキル
+            </th>
+            <td class="p-10 w-full">
+              <textarea v-model="recruitment.skills" placeholder="スキルを入力" class="border w-full px-1 text-top"></textarea>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <th class="p-4 whitespace-no-wrap text-left">
               募集内容
             </th>
             <td class="p-10 w-full">
@@ -74,7 +79,23 @@
               募集締め切り日
             </th>
             <td class="p-10 w-full">
-                <input type="date" v-model="recruitment.endDate" class="border w-full px-1">
+            <input type="date" v-model="recruitment.dateEnd" class="border w-full px-1">
+            </td>
+          </tr>
+          <tr class="border-b">
+            <th class="p-4 whitespace-no-wrap text-left">
+              研究室名
+            </th>
+            <td class="p-10 w-full">
+              <input v-model="recruitment.lab" class="border w-full px-1" placeholder="研究室名を入力" />
+            </td>
+          </tr>
+          <tr class="border-b">
+            <th class="p-4 whitespace-no-wrap text-left">
+              給与
+            </th>
+            <td class="p-10 w-full">
+              <input v-model="recruitment.pay" class="border w-full px-1" placeholder="月給/日給/時給を入力" />
             </td>
           </tr>
         </tbody>

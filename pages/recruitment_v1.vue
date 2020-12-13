@@ -41,6 +41,8 @@ type Jobs = {
         }
         contents: string
         term: string
+        dateEnd: firebase.firestore.Timestamp
+        pay: string
   }
 }
 
@@ -67,7 +69,8 @@ export default defineComponent({
             speedPriority: false
         },
         contents: '',
-        term: ''
+        dateEnd: '',
+        pay: ''
       }
     })
 
@@ -78,7 +81,8 @@ export default defineComponent({
         genre: RecruitmentData.recruitment.genre,
         tags: RecruitmentData.recruitment.tags,
         contents: RecruitmentData.recruitment.contents,
-        term: RecruitmentData.recruitment.term
+        dateEnd: new Date(RecruitmentData.recruitment.dateEnd),
+        pay: RecruitmentData.recruitment.pay
       }
       firebase
         .firestore()
