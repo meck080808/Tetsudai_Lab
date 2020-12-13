@@ -11,7 +11,7 @@
         class="bg-pink-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-pink-500"
         v-on:click="reset()"
       >
-        取り消し
+        クリア
       </button>
     </div>
     <div id="checks" class="mb-4 w-full">
