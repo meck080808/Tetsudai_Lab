@@ -1,4 +1,4 @@
-<template>
+<template >
   <div>
     <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-4 md:mb-8 border-b">{{ job.title }}</h1>
 
@@ -8,28 +8,19 @@
         <div>
           <img src="@/assets/image/d6671-3-910738-4.jpg" class="w-4/6 m-auto my-10">
         </div>
-        <!-- <div>
-          土木・建築を専門としている研究室です。現在は教授２名（准教授1名、助教授1名）及び学生10名(博士1名、修士3名、学士6名)が所属しています。
-          土木・建築関係の会社との共同研究も多く、特に建築関係の業務のIT化の依頼は非常に多いです。
-          しかしながら学生だけでは手が足りず共同研究をお断りするケースも同様に増えており、アルバイトを雇いたいと思っています。
-        </div> -->
 
         <table class="w-full text-md bg-white my-6">
           <thead>
             <tr class="border-b bg-blue-900 text-white">
               <!-- <th class="text-left p-3 px-5">タイトル</th> -->
-              <th class="text-left p-3 px-5">ジャンル</th>
-              <th class="text-left p-3 px-5">特徴</th>
-              <th class="text-left p-3 px-5">スキル</th>
-              <th class="text-left p-3 px-5">終了時期</th>
+              <th class="text-left p-3 px-5 text-center">ジャンル</th>
+              <th class="text-left p-3 px-5 text-center">特徴</th>
+              <th class="text-left p-3 px-5 text-center">スキル</th>
+              <th class="text-left p-3 px-5 text-center">終了時期</th>
             </tr>
           </thead>
           <tbody class="text-gray-900">
-            <tr
-            class="border-b bg-gray-100">
-              <!-- <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-                {{ job.title }} -->
-              </td>
+            <tr class="border-b bg-gray-100 ">
               <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
                 {{ job.genre }}
               </td>
@@ -41,7 +32,8 @@
                 </div>
               </td>
               <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-                <div v-for="(value, name) in job.skills" :key="name">
+                <div v-for="(value, name) in job.skills" :key="name" 
+                class="border-4 border-opacity-100 bg-blue-300 m-1 text-center rounded-lg text-md text-white">
                   {{ value }}
                   </div>
                 <!-- {{ job.skills }} -->
@@ -95,7 +87,7 @@ export default defineComponent({
     })
     firebase
     .firestore()
-    .collection('temp')
+    .collection('jobs')
     .doc(root.$route.params.id)
     .get()
     .then((doc) => {
