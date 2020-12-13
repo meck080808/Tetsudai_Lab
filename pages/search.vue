@@ -60,13 +60,30 @@
           雇用機構・研究室：{{ job.lab }}
         </p>
         <p class="pb-1 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
-          ジャンル：{{ job.genre }}
+          <template v-if="job.beginner === true">
+            <a
+              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+            >
+              初心者OK
+            </a>
+          </template>
+          <template v-if="job.easy === true">
+            <a
+              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+            >
+              カンタン
+            </a>
+          </template>
+          <template v-if="job.experienced === true">
+            <a
+              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+            >
+              経験者優遇
+            </a>
+          </template>
         </p>
         <p class="pb-10 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
           締め切り：{{ job.dateEnd.toDate() }}
-        </p>
-        <p>
-          {{ job.tags.night }}
         </p>
       </div>
     </div>
@@ -87,12 +104,13 @@ type Job = {
   genre: string
   lab: string
   dateEnd: string
-  tags: {
-    night: boolean
-    speed: boolean
+  beginner: boolean
+  easy: boolean
+  experienced: boolean
+  highPrice: boolean
+  longterm: boolean
+  speedPriority: boolean
   }
-//  dateStart: string
-}
 
 export default defineComponent({
   components: {
@@ -124,10 +142,12 @@ export default defineComponent({
             genre: doc.data().genre,
             lab: doc.data().lab,
             dateEnd: doc.data().dateEnd,
-            tags: {
-              night: doc.data().night,
-              speed: doc.data().speed,
-            }
+            beginner: doc.data().beginner,
+            easy: doc.data().tags.easy,
+            experienced: doc.data().tags.experienced,
+            highPrice: doc.data().tags.highPrice,
+            longterm: doc.data().tags.longterm,
+            speedPriority: doc.data().tags.speedPriority,
           })
         })
       })    
