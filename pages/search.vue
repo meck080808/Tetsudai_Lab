@@ -6,17 +6,11 @@
         class="h-12 p-4 mb-1 w-2/3 object-center bg-white border-2 border-gray-300 rounded-full"
         placeholder="タイトルで検索"
         aria-label="タイトルで検索"
-        v-model="tags.searchTerm"
-      > <!-- :value="search"  @input="handleSearch"
-      <button
-        class="bg-green-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-green-500"
-      > <!-- :class="{ 'bg-red-500 text-white hover:bg-red-600'}" : status === 'rejected'  
-        絞り込み
-      </button>-->
+        v-model="tags.searchTerm">
       <button
         class="bg-pink-400 rounded-full px-3 py-2 font-medium text-center text-sm m-1 hover:bg-pink-500"
         v-on:click="reset()"
-      > <!--  :class="{ 'bg-indigo-700 text-white hover:bg-indigo-800' : status === 'all' }" : status === 'rejected'  @click="handleStatusFilter('rejected')" -->
+      >
         取り消し
       </button>
     </div>
@@ -106,7 +100,7 @@
           </template>
         </p>
         <p class="pb-10 px-8 text-md whitespace-no-wrap sm:whitespace-normal">
-          締め切り：{{ job.dateEnd.toDate() }}
+          締め切り：{{ job.dateEnd }}
         </p>
       </div>
     </div>
@@ -150,7 +144,13 @@ export default defineComponent({
       tag_longterm: false,
       tag_speedPriority: false,
       searchTerm: ''
-    })
+    })    
+    const formatDate = (date: Date): string => {
+      var y = date.getFullYear();
+      var m = ('00' + (date.getMonth()+1)).slice(-2);
+      var d = ('00' + date.getDate()).slice(-2);
+      return (y + '年' + m + '月' + d + '日まで');
+    }
     firebase
       .firestore()
       .collection('jobs')
@@ -163,7 +163,7 @@ export default defineComponent({
             title: doc.data().title,
             genre: doc.data().genre,
             lab: doc.data().lab,
-            dateEnd: doc.data().dateEnd,
+            dateEnd: formatDate(doc.data().dateEnd.toDate()),
             beginner: doc.data().tags.beginner,
             easy: doc.data().tags.easy,
             experienced: doc.data().tags.experienced,
