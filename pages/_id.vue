@@ -1,6 +1,6 @@
 <template >
   <div>
-    <h1 class="text-2xl sm:text-3xl text-red-500 p-4 mb-4 md:mb-8 border-b">{{ job.title }}</h1>
+    <h1 class="text-2xl font-black sm:text-3xl text-red-600 text-opacity-70 p-4 mb-4 md:mb-8 border-b">{{ job.title }}</h1>
 
     <div>
       <!-- <div>研究室名</div>
@@ -41,7 +41,7 @@
                   </div>
                 <!-- {{ job.skills }} -->
               </td>
-              <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
+              <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal text-red-500 font-extrabold text-center">
                 {{ job.dateEnd }}
               </td>
             </tr>
@@ -92,6 +92,12 @@ export default defineComponent({
       dateEnd: '',
       pay: '',
     })
+    const formatDate = (date: Date): string => {
+      var y = date.getFullYear();
+      var m = ('00' + (date.getMonth()+1)).slice(-2);
+      var d = ('00' + date.getDate()).slice(-2);
+      return (y + '年' + m + '月' + d + '日終了');
+    }
     firebase
     .firestore()
     .collection('jobs')
@@ -99,12 +105,14 @@ export default defineComponent({
     .get()
     .then((doc) => {
       if(doc.exists) {
+        console.log("toDate()")
+        console.log(doc.data().dateEnd.toDate())
         job.lab = doc.data().lab
         job.title = doc.data().title
         job.genre = doc.data().genre
         job.tags = doc.data().tags
         job.skills = doc.data().skills
-        job.dateEnd = doc.data().dateEnd
+        job.dateEnd = formatDate(doc.data().dateEnd.toDate())
         job.pay = doc.data().pay
       }
     })
