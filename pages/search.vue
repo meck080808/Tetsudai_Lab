@@ -29,7 +29,7 @@
           経験者優遇
         </label>
         <label for="checkbox4">
-          <input type=checkbox id="checkbox4" v-model="tags.tag_highPay"/>
+          <input type=checkbox id="checkbox4" v-model="tags.tag_highPrice"/>
           高報酬
         </label>
         <label for="checkbox5">
@@ -77,7 +77,7 @@
               経験者優遇
             </a>
           </template>
-          <template v-if="job.highPay === true">
+          <template v-if="job.highPrice === true">
             <a
               class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
@@ -140,7 +140,7 @@ export default defineComponent({
       tag_beginner: false,
       tag_easy: false,
       tag_experienced: false,
-      tag_highPay: false,
+      tag_highPrice: false,
       tag_longterm: false,
       tag_speedPriority: false,
       searchTerm: ''
@@ -184,7 +184,7 @@ export default defineComponent({
         if (! tags.tag_beginner
         && ! tags.tag_easy
         && ! tags.tag_experienced
-        && ! tags.tag_highPay
+        && ! tags.tag_highPrice
         && ! tags.tag_longterm
         && ! tags.tag_speedPriority)
         {
@@ -196,7 +196,7 @@ export default defineComponent({
             return true
           } else if (tags.tag_experienced && job.experienced == tags.tag_experienced){
             return true
-          } else if (tags.tag_highPay && job.highPrice == tags.tag_highPay){
+          } else if (tags.tag_highPrice && job.highPrice == tags.tag_highPrice){
             return true
           } else if (tags.tag_longterm && job.longterm == tags.tag_longterm){
             return true
@@ -220,7 +220,7 @@ export default defineComponent({
       tags.tag_beginner = false;
       tags.tag_easy = false;
       tags.tag_experienced = false;
-      tags.tag_highPay = false;
+      tags.tag_highPrice = false;
       tags.tag_longterm = false;
       tags.tag_speedPriority = false;
       tags.searchTerm = '';
