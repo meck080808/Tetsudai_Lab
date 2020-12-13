@@ -23,7 +23,7 @@
             カテゴリから探す
             </h1>
         </div>
-        <div class="mt-5">
+        <div class="mt-5　place-self-center">
             <categoryTable/>
         </div>
   </div>

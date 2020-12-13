@@ -3,7 +3,7 @@
   <table class="w-full text-center">
     <thead>
       <tr>
-        <th class="text-center">生命・理工系</th>
+        <th class="text-center">生命工・理工学系</th>
         <th class="text-center">物質・環境・情報系</th>
         <th class="text-center">社会・人文科学系</th>
       </tr>
@@ -12,14 +12,17 @@
     <tbody>
       <td>応用化学</td>
       <td>物質構造</td>
+      <td>経済</td>
     </tbody>
     <tbody>
       <td>電気電子工学</td>
       <td>地球環境</td>
+      <td>法律</td>
     </tbody>
     <tbody>
       <td>遺伝子</td>
       <td>情報工学</td>
+      <td>人文社会学</td>
     </tbody>
   </table>
 </div>
