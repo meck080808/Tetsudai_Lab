@@ -57,6 +57,8 @@
           しかしながら学生だけでは手が足りず共同研究をお断りするケースも同様に増えており、アルバイトを雇いたいと思っています。</p>
           <div class="font-black mb-3">給与</div>
           <div class="mb-6">{{ job.pay }}</div>
+          <div class="font-black mb-3">連絡先</div>
+          <div class="mb-6">{{ job.address }}</div>
         </div>
     </div>
 
@@ -80,6 +82,7 @@ type Job = {
   skills: string
   dateEnd:string
   pay:string
+  address:string
 }
 export default defineComponent({
   setup(_, { root }: SetupContext){
@@ -91,6 +94,7 @@ export default defineComponent({
       skills: '',
       dateEnd: '',
       pay: '',
+      adress: '',
     })
     const formatDate = (date: Date): string => {
       var y = date.getFullYear();
@@ -114,6 +118,8 @@ export default defineComponent({
         job.skills = doc.data().skills
         job.dateEnd = formatDate(doc.data().dateEnd.toDate())
         job.pay = doc.data().pay
+        job.address = doc.data().address
+
       }
     })
     .catch((err) => {

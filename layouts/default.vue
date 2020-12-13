@@ -17,6 +17,11 @@
         <nuxt />
       </main>
       <footer class="p-4">
+        <div class="text-right">
+          <a href="/">
+            <button>Topへ戻る</button>
+          </a>
+        </div>
         <p class="text-gray-500 font-xs text-center">
           <span class="inline-block pt-2 border-t md:pt-8 md:border-none">
             Copyright Tetsudai-Lab
