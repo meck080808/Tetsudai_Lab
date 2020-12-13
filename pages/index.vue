@@ -12,15 +12,19 @@
       研究アルバイトを探す
     </h1>
     <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
+        <form action="/search" method="get">
       <input
         type="search"
+        name="q"
+        id="topSearch"
         class="h-12 p-4 mb-1 w-2/3 object-center bg-white border-2 border-gray-300 rounded-full"
         placeholder="キーワードで検索"
         aria-label="キーワードで検索"
       > <!-- :value="search"  @input="handleSearch" -->
-        <a href="search">
-        <input type="submit" value="検索" class="bg-green-400 rounded-full px-6 py-2 font-medium text-center m-1 hover:bg-green-500">
+        <input type="submit" 
+        value="検索" class="bg-green-400 rounded-full px-6 py-2 font-medium text-center m-1 hover:bg-green-500">
         </a>
+        </form>
     </div>
     <!-- <div class="text-center">
         <div class ="inline-block">
@@ -55,7 +59,7 @@ import categoryTable from '@/components/category-table.vue'
 export default defineComponent({
     components: {
         PageHeading,
-        categoryTable
+        categoryTable,
     },
     layout: 'top_layout'
 })

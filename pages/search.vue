@@ -16,6 +16,9 @@
     </div>
     <div id="checks" class="mb-4 w-full">
       <div class="flex flex-wrap items-center space-x-8 justify-center w-full text-gray-800">
+        <p>
+          一つのタッグで選択てください：
+        </p>
         <label for="checkbox1">
           <input type=checkbox id="checkbox1" v-model="tags.tag_beginner"/>
           初心者OK
@@ -113,6 +116,7 @@ import PageHeading from '@/components/page-heading.vue'
 import ProfileTable from '@/components/profile-table.vue'
 import firebase from '@/plugins/firebase.ts'
 import { variants } from '~/tailwind.config'
+import Router from "vue-router";
 
 type Job = {
   id: string
@@ -143,7 +147,7 @@ export default defineComponent({
       tag_highPrice: false,
       tag_longterm: false,
       tag_speedPriority: false,
-      searchTerm: ''
+      searchTerm: '調査'
     })    
     const formatDate = (date: Date): string => {
       var y = date.getFullYear();
@@ -225,6 +229,16 @@ export default defineComponent({
       tags.tag_speedPriority = false;
       tags.searchTerm = '';
     }
+
+    const urlsearch = () => {
+	    var href = window.location.href;
+	    var reg = new RegExp( '[?&]' + 'q=([^&#]*)', 'i' );
+	    var string = reg.exec(href);
+      var q = string ? string[1] : '';
+      tags.searchTerm = decodeURIComponent(q);
+    }
+
+    urlsearch()
 
     return {
       tags,
