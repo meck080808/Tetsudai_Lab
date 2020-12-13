@@ -60,10 +60,13 @@
           </tr>
           <tr class="border-b">
             <th class="p-4 whitespace-no-wrap text-left">
-              必要なスキル
+              必要なスキル<br>
+              (3個まで登録可能)
             </th>
             <td class="p-10 w-full">
-              <textarea v-model="recruitment.skills" placeholder="スキルを入力" class="border w-full px-1 text-top"></textarea>
+                <input v-model="recruitment.skills[0]" placeholder="スキル1を入力" class="border w-full px-1 text-top" />
+                <input v-model="recruitment.skills[1]" placeholder="スキル2を入力" class="border w-full px-1 text-top mt-2" />
+                <input v-model="recruitment.skills[2]" placeholder="スキル3を入力" class="border w-full px-1 text-top mt-2" />
             </td>
           </tr>
           <tr class="border-b">
