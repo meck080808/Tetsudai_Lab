@@ -44,6 +44,7 @@ type Jobs = {
         term: string
         dateEnd: firebase.firestore.Timestamp
         pay: string
+        address: string
   }
 }
 
@@ -72,7 +73,8 @@ export default defineComponent({
         skills: [],
         contents: '',
         dateEnd: '2020-12-13',
-        pay: ''
+        pay: '',
+        address: ''
       }
     })
 
@@ -85,7 +87,8 @@ export default defineComponent({
         skills: RecruitmentData.recruitment.skills,
         contents: RecruitmentData.recruitment.contents,
         dateEnd: new Date(RecruitmentData.recruitment.dateEnd),
-        pay: RecruitmentData.recruitment.pay
+        pay: RecruitmentData.recruitment.pay,
+        address: RecruitmentData.recruitment.address
       }
       firebase
         .firestore()
@@ -98,7 +101,7 @@ export default defineComponent({
     }
     return {
       RecruitmentData,
-      setprofile,
+      setprofile
     }
   },
 })
