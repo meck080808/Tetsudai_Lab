@@ -1,9 +1,10 @@
 <template >
   <div>
-    <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-4 md:mb-8 border-b">{{ job.title }}</h1>
+    <h1 class="text-2xl sm:text-3xl text-red-500 p-4 mb-4 md:mb-8 border-b">{{ job.title }}</h1>
 
     <div>
-      <div class="tx-2xl">{{ job.lab }}</div>
+      <!-- <div>研究室名</div>
+      <div>{{ job.lab }}</div> -->
         <!-- <div class="auto"> -->
         <div>
           <img src="@/assets/image/d6671-3-910738-4.jpg" class="w-4/6 m-auto my-10">
@@ -22,11 +23,13 @@
           <tbody class="text-gray-900">
             <tr class="border-b bg-gray-100 ">
               <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
+                <div class="border-4 border-opacity-100 bg-blue-300 m-1 text-center rounded-lg text-md text-white">
                 {{ job.genre }}
+                </div>
               </td>
               <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
                 <div v-for="(value, name) in job.tags" :key="name">
-                  <div v-if="value==true">
+                  <div v-if="value==true" class="border-4 border-opacity-100 bg-blue-300 m-1 text-center rounded-lg text-md text-white">
                     {{ name }}
                   </div>
                 </div>
@@ -46,18 +49,20 @@
         </table>
 
         <div>
-          <div class="font-black">研究室紹介</div>
-          土木・建築を専門としている研究室です。現在は教授２名（准教授1名、助教授1名）及び学生10名(博士1名、修士3名、学士6名)が所属しています。
+          <div class="font-black mb-3">研究室名</div>
+          <div class="mb-6">{{ job.lab }}</div>
+          <div class="font-black mb-3">研究室紹介</div>
+          <p class="mb-6">土木・建築を専門としている研究室です。現在は教授２名（准教授1名、助教授1名）及び学生10名(博士1名、修士3名、学士6名)が所属しています。
           土木・建築関係の会社との共同研究も多く、特に建築関係の業務のIT化の依頼は非常に多いです。
-          しかしながら学生だけでは手が足りず共同研究をお断りするケースも同様に増えており、アルバイトを雇いたいと思っています。
-          <div class="font-black">給与</div>
-          1500円~
-          <div class="font-black">住所</div>
+          しかしながら学生だけでは手が足りず共同研究をお断りするケースも同様に増えており、アルバイトを雇いたいと思っています。</p>
+          <div class="font-black mb-3">給与</div>
+          <div class="mb-6">{{ job.pay }}</div>
         </div>
     </div>
 
     <p>Mail address</p>
-    <input v-model="message" placeholder="edit me">
+    <input v-model="message" placeholder="tetsudai_lab@example.com" >
+    <button class="rounded px-2 bg-green-400 hover:bg-green-600 font-bold text-white flex-wrap">アドレス登録</button>
      
   </div>
 
@@ -74,6 +79,7 @@ type Job = {
   tags: boolean
   skills: string
   dateEnd:string
+  pay:string
 }
 export default defineComponent({
   setup(_, { root }: SetupContext){
@@ -84,6 +90,7 @@ export default defineComponent({
       tags: '',
       skills: '',
       dateEnd: '',
+      pay: '',
     })
     firebase
     .firestore()
@@ -98,6 +105,7 @@ export default defineComponent({
         job.tags = doc.data().tags
         job.skills = doc.data().skills
         job.dateEnd = doc.data().dateEnd
+        job.pay = doc.data().pay
       }
     })
     .catch((err) => {
