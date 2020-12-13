@@ -40,4 +40,6 @@ input[type='text'],
 select {
   outline-color: #a0aec0;
 }
+
+
 </style>
