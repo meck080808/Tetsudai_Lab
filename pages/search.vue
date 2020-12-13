@@ -23,27 +23,27 @@
     <div id="checks" class="mb-4 w-full">
       <div class="flex flex-wrap items-center space-x-8 justify-center w-full text-gray-800">
         <label for="checkbox1">
-          <input type=checkbox id="checkbox1" v-model="tags.tag1"/>
+          <input type=checkbox id="checkbox1" v-model="tags.tag_beginner"/>
           初心者OK
         </label>
         <label for="checkbox2">
-          <input type=checkbox id="checkbox2" v-model="tags.tag2"/>
+          <input type=checkbox id="checkbox2" v-model="tags.tag_easy"/>
           カンタン
         </label>
         <label for="checkbox3">
-          <input type=checkbox id="checkbox3" v-model="tags.tag3"/>
+          <input type=checkbox id="checkbox3" v-model="tags.tag_experienced"/>
           経験者優遇
         </label>
         <label for="checkbox4">
-          <input type=checkbox id="checkbox4" v-model="tags.tag4"/>
+          <input type=checkbox id="checkbox4" v-model="tags.tag_highPay"/>
           高報酬
         </label>
         <label for="checkbox5">
-          <input type=checkbox id="checkbox5" v-model="tags.tag5"/>
+          <input type=checkbox id="checkbox5" v-model="tags.tag_longterm"/>
           長期
         </label>
         <label for="checkbox6">
-          <input type=checkbox id="checkbox6" v-model="tags.tag6"/>
+          <input type=checkbox id="checkbox6" v-model="tags.tag_speedPriority"/>
           スピード重視
         </label>
       </div>
@@ -64,44 +64,44 @@
         <p class="pb-1 px-8 space-x-1 text-md whitespace-no-wrap sm:whitespace-normal">
           <template v-if="job.beginner === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
               初心者OK
             </a>
           </template>
           <template v-if="job.easy === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
               カンタン
             </a>
           </template>
           <template v-if="job.experienced === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
               経験者優遇
             </a>
           </template>
           <template v-if="job.highPay === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
-              経験者優遇
+              高報酬
             </a>
           </template>
           <template v-if="job.longterm === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
-              経験者優遇
+              長期
             </a>
           </template>
           <template v-if="job.speedPriority === true">
             <a
-              class="max-w-sm text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
+              class="max-w-sm text-sm bg-blue-500 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline items-center"
             >
-              経験者優遇
+              スピード重視
             </a>
           </template>
         </p>
@@ -143,12 +143,12 @@ export default defineComponent({
   setup(_) {
     const jobsList = reactive<Job[]>([])
     var tags = reactive({
-      tag1: false,
-      tag2: false,
-      tag3: false,
-      tag4: false,
-      tag5: false,
-      tag6: false,
+      tag_beginner: false,
+      tag_easy: false,
+      tag_experienced: false,
+      tag_highPay: false,
+      tag_longterm: false,
+      tag_speedPriority: false,
       searchTerm: ''
     })
     firebase
@@ -178,22 +178,35 @@ export default defineComponent({
       window.location.href = '/' + jobId
     }
     const filteredJobs = (list:any) => {
+      console.log(tags)
       return list.filter( (job:Job) => {
-        if (! tags.tag1 
-        && ! tags.tag2 
-        && ! tags.tag3 
-        && ! tags.tag4 
-        && ! tags.tag5 
-        && ! tags.tag6) 
+        //console.log(job.title, job.easy, tags.tag_easy)
+        if (! tags.tag_beginner
+        && ! tags.tag_easy
+        && ! tags.tag_experienced
+        && ! tags.tag_highPay
+        && ! tags.tag_longterm
+        && ! tags.tag_speedPriority)
         {
           return true
         } else {
-          return job.beginner == tags.tag1
-          && job.easy == tags.tag2
-          && job.experienced == tags.tag3
-          && job.highPrice == tags.tag4
-          && job.longterm == tags.tag5
-          && job.speedPriority == tags.tag6
+          if (tags.tag_beginner && job.beginner == tags.tag_beginner) {
+            return true
+          } else if (tags.tag_easy && job.easy == tags.tag_easy) {
+            return true
+          } else if (tags.tag_experienced && job.experienced == tags.tag_experienced){
+            return true
+          } else if (tags.tag_highPay && job.highPrice == tags.tag_highPay){
+            return true
+          } else if (tags.tag_longterm && job.longterm == tags.tag_longterm){
+            return true
+          } else if (tags.tag_beginner && job.beginner == tags.tag_beginner){
+            return true
+          } else if (tags.tag_speedPriority && job.speedPriority == tags.tag_speedPriority) {
+            return true
+          } else {
+            return false
+          }
         }
       })
     }
@@ -204,12 +217,12 @@ export default defineComponent({
     }
 
     const reset = () => {
-      tags.tag1 = false;
-      tags.tag2 = false;
-      tags.tag3 = false;
-      tags.tag4 = false;
-      tags.tag5 = false;
-      tags.tag6 = false;
+      tags.tag_beginner = false;
+      tags.tag_easy = false;
+      tags.tag_experienced = false;
+      tags.tag_highPay = false;
+      tags.tag_longterm = false;
+      tags.tag_speedPriority = false;
       tags.searchTerm = '';
     }
 
