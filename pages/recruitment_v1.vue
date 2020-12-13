@@ -39,6 +39,7 @@ type Jobs = {
             highPrice: boolean
             speedPriority: boolean
         }
+        skills: string
         contents: string
         term: string
         dateEnd: firebase.firestore.Timestamp
@@ -68,8 +69,9 @@ export default defineComponent({
             highPrice: false,
             speedPriority: false
         },
+        skills: [],
         contents: '',
-        dateEnd: '',
+        dateEnd: '2020-12-13',
         pay: ''
       }
     })
@@ -80,6 +82,7 @@ export default defineComponent({
         title: RecruitmentData.recruitment.title,
         genre: RecruitmentData.recruitment.genre,
         tags: RecruitmentData.recruitment.tags,
+        skills: RecruitmentData.recruitment.skills,
         contents: RecruitmentData.recruitment.contents,
         dateEnd: new Date(RecruitmentData.recruitment.dateEnd),
         pay: RecruitmentData.recruitment.pay
