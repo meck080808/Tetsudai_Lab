@@ -51,12 +51,16 @@
         <div>
           <div class="font-black mb-3">研究室名</div>
           <div class="mb-6">{{ job.lab }}</div>
+          <div class="font-black mb-3">募集内容</div>
+          <div class="mb-6">{{ job.contents }}</div>
           <div class="font-black mb-3">研究室紹介</div>
           <p class="mb-6">土木・建築を専門としている研究室です。現在は教授２名（准教授1名、助教授1名）及び学生10名(博士1名、修士3名、学士6名)が所属しています。
           土木・建築関係の会社との共同研究も多く、特に建築関係の業務のIT化の依頼は非常に多いです。
           しかしながら学生だけでは手が足りず共同研究をお断りするケースも同様に増えており、アルバイトを雇いたいと思っています。</p>
           <div class="font-black mb-3">給与</div>
           <div class="mb-6">{{ job.pay }}</div>
+          <div class="font-black mb-3">連絡先</div>
+          <div class="mb-6">{{ job.address }}</div>
         </div>
     </div>
 
@@ -80,6 +84,8 @@ type Job = {
   skills: string
   dateEnd:string
   pay:string
+  address:string
+  contents:string
 }
 export default defineComponent({
   setup(_, { root }: SetupContext){
@@ -91,6 +97,8 @@ export default defineComponent({
       skills: '',
       dateEnd: '',
       pay: '',
+      adress: '',
+      contents: '',
     })
     const formatDate = (date: Date): string => {
       var y = date.getFullYear();
@@ -114,6 +122,8 @@ export default defineComponent({
         job.skills = doc.data().skills
         job.dateEnd = formatDate(doc.data().dateEnd.toDate())
         job.pay = doc.data().pay
+        job.address = doc.data().address
+        job.contents = doc.data().contents
       }
     })
     .catch((err) => {

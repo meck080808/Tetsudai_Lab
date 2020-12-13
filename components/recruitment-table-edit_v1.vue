@@ -101,6 +101,14 @@
               <input v-model="recruitment.pay" class="border w-full px-1" placeholder="月給/日給/時給を入力" />
             </td>
           </tr>
+          <tr class="border-b">
+            <th class="p-4 whitespace-no-wrap text-left">
+              連絡先
+            </th>
+            <td class="p-10 w-full">
+              <input v-model="recruitment.address" class="border w-full px-1" placeholder="連絡先を入力" />
+            </td>
+          </tr>
         </tbody>
       </table>
   </div>

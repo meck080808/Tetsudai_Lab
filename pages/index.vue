@@ -5,10 +5,10 @@
             href="/"
             class="text-xl sm:text-2xl font-bold uppercase text-blue-900 hover:text-blue-800"
         >
-            <img src="@/assets/img/logo.png" alt="画像が見つかりません" style="width: 1000px;">
+            <img src="@/assets/img/logo.png" alt="画像が見つかりません" style="width: 1000px;" class="m-auto">
         </a>
     </p>
-    <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-0 mt-10 text-center">
+    <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-0 mt-10 text-center animate-bounce">
       研究アルバイトを探す
     </h1>
     <div class="flex flex-wrap items-center justify-center w-full text-gray-800">
@@ -26,31 +26,18 @@
         </a>
         </form>
     </div>
-    <!-- <div class="text-center">
-        <div class ="inline-block">
-            <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-0 mt-10">
-            研究分野から探す
-            </h1>
-            <div class="lg:w-11/12 mx-auto flex flex-wraps">
-            <categoryTable
-                class=" w-full text-center"
-            />
-            </div>
-        </div> -->
-        <!-- <div class="inline-block">
-            <PageHeading class="text-center mt-10">
-            スキルから探す
-            </PageHeading>
-            <div class="lg:w-11/12 mx-auto flex flex-wraps">
-            <categoryTable
-                class=" w-full text-center"
-            />
-            </div>
-        </div> -->
-    </div>
 
+        <div class ="text-center m-auto">
+            <h1 class="text-2xl sm:text-3xl text-blue-900 p-4 mb-0 mt-4">
+            カテゴリから探す
+            </h1>
+        </div>
+        <div class="mt-5　place-self-center">
+            <categoryTable/>
+        </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'

@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <PageHeading class="text-center">
-      アルバイト募集の作成
+      募集内容の編集
     </PageHeading>
     <div class="lg:w-11/12 mx-auto flex flex-wraps">
       <profileTableEdit
@@ -14,7 +14,7 @@
             class="w-100 text-sm bg-blue-500 hover:bg-blue-700 text-white py-3 px-5 mt-5 rounded focus:outline-none focus:shadow-outline"
             @click="setprofile"
         >
-            アルバイト募集を登録する
+            編集内容を登録する
         </button>
     </div>
   </div>
@@ -24,6 +24,7 @@ import { defineComponent, reactive, SetupContext, onBeforeMount } from 'nuxt-com
 import PageHeading from '@/components/page-heading.vue'
 import profileTableEdit from '@/components/recruitment-table-edit_v1.vue'
 import firebase from '@/plugins/firebase.ts'
+import { useRoute } from 'vue-router'
 
 type Jobs = {
 //   id: string
@@ -78,6 +79,29 @@ export default defineComponent({
       }
     })
 
+    const getUserData = () => {
+      firebase
+        .firestore()
+        .collection('jobs')
+        .doc(root.$route.params.id)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+        RecruitmentData.recruitment.lab = doc.data().lab,
+        RecruitmentData.recruitment.title = doc.data().title,
+        RecruitmentData.recruitment.genre = doc.data().genre,
+        RecruitmentData.recruitment.tags = doc.data().tags,
+        RecruitmentData.recruitment.skills = doc.data().skills,
+        RecruitmentData.recruitment.contents = doc.data().contents,
+        RecruitmentData.recruitment.pay = doc.data().pay,
+        RecruitmentData.recruitment.address = doc.data().address
+          }
+        })
+        .catch((err) => {
+          console.log('Error getting user document', err);
+        })
+    }
+
     const setprofile = (): void => {
       const data = {
         lab: RecruitmentData.recruitment.lab,
@@ -93,10 +117,11 @@ export default defineComponent({
       firebase
         .firestore()
         .collection('jobs') // usersコレクションの、
+        .doc(root.$route.params.id)
         .add(data) // dataをセットする
         .then((response) => {
           console.log(response.id)
-          window.location.href = '/'+ response.id // 完了後、プロフィール画面へ遷移
+          window.location.href = '/'+ root.$route.params.id // 完了後、プロフィール画面へ遷移
         })
     }
     return {
